@@ -4,6 +4,7 @@ import { container } from './container';
 import { env } from './infrastructure/config/env';
 import { errorHandler, notFoundHandler } from './interface/middlewares/errorHandler';
 import { authRouter } from './interface/routers/authRouter';
+import { categoryRouter } from './interface/routers/categoryRouter';
 
 export const app = express();
 
@@ -16,6 +17,7 @@ app.get('/api/health', (_req, res) => {
 
 const { authenticate } = container;
 app.use('/api/auth', authRouter(container.authController, authenticate));
+app.use('/api/categories', categoryRouter(container.categoryController, authenticate));
 
 app.use(notFoundHandler);
 app.use(errorHandler);
