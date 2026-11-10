@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+enum SupportFocus {
+  ACADEMIC
+  EMOTIONAL
+  FINANCIAL
+}
+
+enum RiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+model User {
+  id          Int          @id @default(autoincrement())
+  name        String       @db.VarChar(100)
+  email       String       @unique @db.VarChar(150)
+  password    String
+  role        Role         @default(USER)
+  status      Status       @default(ACTIVE)
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+  evaluations Evaluation[]
+
+  @@map("users")
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique @db.VarChar(80)
+  description String    @db.VarChar(300)
+  focus       SupportFocus
+  status      Status    @default(ACTIVE)
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  services    Service[]
+
+  @@map("categories")
+}
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(120)
+  description String   @db.VarChar(1000)
+  location    String   @db.VarChar(150)
+  schedule    String   @db.VarChar(150)
+  contact     String?  @db.VarChar(150)
+  imageUrl    String?  @map("image_url")
+  status      Status   @default(ACTIVE)
+  categoryId  Int      @map("category_id")
+  category    Category @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([categoryId])
+  @@map("services")
+}
+
+model Evaluation {
+  id                  Int          @id @default(autoincrement())
+  averageGrade        Decimal      @map("average_grade") @db.Decimal(3, 2)
+  failedSubjects      Int          @map("failed_subjects")
+  sleepQuality        Int          @map("sleep_quality")
+  stressLevel         Int          @map("stress_level")
+  motivation          Int
+  socialSupport       Int          @map("social_support")
+  riskScore           Int          @map("risk_score")
+  riskLevel           RiskLevel    @map("risk_level")
+  recommendedFocus    SupportFocus? @map("recommended_focus")
+  status              Status       @default(ACTIVE)
+  userId              Int          @map("user_id")
+  user                User         @relation(fields: [userId], references: [id])
+  createdAt           DateTime     @default(now()) @map("created_at")
+  updatedAt           DateTime     @updatedAt @map("updated_at")
+
+  @@index([userId])
+  @@map("evaluations")
+}
