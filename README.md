@@ -8,9 +8,9 @@ Proyecto de Aula — Desarrollo Web Full-Stack, semestre 2026-2.
 
 | Qué | URL |
 | --- | --- |
-| API (Railway) | `https://PENDIENTE.up.railway.app` |
-| Frontend (Vercel) | `https://PENDIENTE.vercel.app` |
-| Repositorio frontend | `https://github.com/PENDIENTE/vsj-aula-frontend` |
+| API (Railway) | https://vsj-aula-backend-production.up.railway.app |
+| Frontend (Vercel) | https://URL-DE-VERCEL.vercel.app |
+| Repositorio frontend | https://github.com/suribe27/vsj-aula-frontend |
 
 ## Tecnologías
 
@@ -95,5 +95,5 @@ src/
 
 | Integrante | Qué construyó |
 | --- | --- |
-| PENDIENTE (tu nombre) | Configuración del proyecto, esquema de Prisma y seed, autenticación JWT y middlewares de autenticación y rol, CRUD de servicios con subida de imágenes a Supabase, despliegue en Railway |
-| Valery PENDIENTE | CRUD de categorías, CRUD de evaluaciones y regla de cálculo del riesgo con sus pruebas |
+| Samuel Uribe Salazar | Configuración del proyecto, esquema de Prisma y seed, autenticación JWT y middlewares de autenticación y rol, CRUD de servicios con subida de imágenes a Supabase, despliegue en Railway |
+| Valery Monsalve | CRUD de categorías, CRUD de evaluaciones y regla de cálculo del riesgo con sus pruebas |
