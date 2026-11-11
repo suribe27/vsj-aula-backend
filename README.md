@@ -9,7 +9,7 @@ Proyecto de Aula — Desarrollo Web Full-Stack, semestre 2026-2.
 | Qué | URL |
 | --- | --- |
 | API (Railway) | https://vsj-aula-backend-production.up.railway.app |
-| Frontend (Vercel) | https://URL-DE-VERCEL.vercel.app |
+| Frontend (Vercel) | https://vsj-aula-frontend.vercel.app |
 | Repositorio frontend | https://github.com/suribe27/vsj-aula-frontend |
 
 ## Tecnologías
