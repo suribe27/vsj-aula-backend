@@ -5,6 +5,7 @@ import { env } from './infrastructure/config/env';
 import { errorHandler, notFoundHandler } from './interface/middlewares/errorHandler';
 import { authRouter } from './interface/routers/authRouter';
 import { categoryRouter } from './interface/routers/categoryRouter';
+import { evaluationRouter } from './interface/routers/evaluationRouter';
 import { serviceRouter } from './interface/routers/serviceRouter';
 
 export const app = express();
@@ -20,6 +21,7 @@ const { authenticate } = container;
 app.use('/api/auth', authRouter(container.authController, authenticate));
 app.use('/api/categories', categoryRouter(container.categoryController, authenticate));
 app.use('/api/services', serviceRouter(container.serviceController, authenticate));
+app.use('/api/evaluations', evaluationRouter(container.evaluationController, authenticate));
 
 app.use(notFoundHandler);
 app.use(errorHandler);
